@@ -2,9 +2,18 @@ const componentProperties = {}
 
 
 async function loadImports() {
-  await fetch("components.html").then(response => response.text().then(data => {
-    document.body.innerHTML += data;
-  }))
+  const importObjects = document.querySelectorAll("import");
+  const importPromises = Array.from(importObjects).map(importObject => 
+    fetch(importObject.getAttribute("src")).then(
+      response => response.text().then(
+        data => {
+          document.body.innerHTML += data;
+        }
+      )
+    )
+  )
+
+  await Promise.all(importPromises)
 }
 
 
