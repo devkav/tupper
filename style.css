@@ -1,0 +1,15 @@
+.container {
+  padding: 10px;
+}
+
+.parent {
+  background-color: blue;
+}
+
+.super-wrapper {
+  background-color: red;
+}
+
+.super-duper-wrapper {
+  background-color: green;
+}

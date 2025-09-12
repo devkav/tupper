@@ -1,0 +1,35 @@
+<comp myComponent greeting="Hello" secondWord>
+    <div>$greeting $secondWord!</div>
+</comp>
+
+
+<comp myOtherComponent>
+    <div>Hello there!</div>
+</comp>
+
+
+<comp parentComponent phase="This should say:">
+    <div class="parent container">
+        <p>$phrase</p>
+        <myComponent secondWord="world"></myComponent>
+        <div>
+            <div>
+                <myOtherComponent></myOtherComponent>
+            </div>
+        </div>
+    </div>
+</comp>
+
+
+<comp superDependent>
+    <div class="super-wrapper container">
+        <parentComponent phrase="Super"></parentComponent>
+    </div>
+</comp>
+
+
+<comp superDuperDependent>
+    <div class="super-duper-wrapper container">
+        <superDependent></superDependent>
+    </div>
+</comp>
