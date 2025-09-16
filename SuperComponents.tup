@@ -1,0 +1,14 @@
+<comp superDependent>
+    <div class="super-wrapper container">
+        <parentComponent phrase="Super"></parentComponent>
+    </div>
+</comp>
+
+<comp superDuperDependent>
+    <div class="super-duper-wrapper container">
+        <p>This is a wrapper</p>
+        <p>Hello!</p>
+        <superDependent></superDependent>
+        <p>This concludes the wrapper :)</p>
+    </div>
+</comp>

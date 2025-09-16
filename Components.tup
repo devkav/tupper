@@ -1,0 +1,20 @@
+<comp myComponent greeting="Hello" secondWord>
+    <div>$greeting $secondWord!</div>
+</comp>
+
+
+<comp myOtherComponent>
+    <div>Hello there!</div>
+</comp>
+
+<comp parentComponent phrase="This should say:">
+    <div class="parent container">
+        <p>$phrase</p>
+        <myComponent secondWord="world"></myComponent>
+        <div>
+            <div>
+                <myOtherComponent></myOtherComponent>
+            </div>
+        </div>
+    </div>
+</comp>

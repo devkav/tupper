@@ -6,13 +6,15 @@ async function loadImports() {
   const importPromises = Array.from(importObjects).map(importObject => 
     fetch(importObject.getAttribute("src"), {
       headers: {
-        "Content-Type": "text/plain",
-        "Accept": "text/plain"
+        "Accept": "text/plain",
+        "Content-Type": "text/plain"
       }
     }).then(
-      response => {
-        console.log(response)
-      }
+      response => response.text().then(
+        data => {
+          document.body.innerHTML += data;
+        }
+      )
     )
   )
 
@@ -38,15 +40,10 @@ function loadComponents() {
       return acc;
     }, {});
 
-    console.log(componentName)
-    console.log(component.children)
-
     componentProperties[componentName] = {
       DOM: component.children[0],
       params,
     };
-
-    console.log(component.children[0].children)
 
     component.remove();
   });
@@ -65,7 +62,6 @@ function renderDescendantComponents(instance) {
 
 function renderComponent(instance) {
   const componentName = instance.tagName.toLowerCase();
-  console.log(`Rendering ${componentName}`)
   const component = componentProperties[componentName];
   const instanceParamValues = Array.from(instance.getAttributeNames()).reduce((acc, attribute) => {
     if (attribute in component.params) {
@@ -86,10 +82,9 @@ function renderComponent(instance) {
   })
 
   Array.from(domClone.children).forEach(child => {
-    console.log(`domclone child:`)
-    console.log(child)
     renderDescendantComponents(child)
   })
+
   instance.replaceWith(domClone);
 }
 
@@ -106,6 +101,7 @@ function renderComponents() {
 
 document.onreadystatechange = async function(e) {
   if (document.readyState === 'complete') {
+    await loadImports();
     loadComponents();
     renderComponents()
   }
