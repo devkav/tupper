@@ -5,8 +5,43 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <import src="components.html"></import>
-        <import src="super-components.html"></import>
+        <comp superDependent>
+            <div class="super-wrapper container">
+                <parentComponent phrase="Super"></parentComponent>
+            </div>
+        </comp>
+
+        <comp superDuperDependent>
+            <div class="super-duper-wrapper container">
+                <p>This is a wrapper</p>
+                <p>Hello!</p>
+                <superDependent></superDependent>
+                <p>This concludes the wrapper :)</p>
+            </div>
+        </comp>
+
+        <comp myComponent greeting="Hello" secondWord>
+            <div>$greeting $secondWord!</div>
+        </comp>
+
+
+        <comp myOtherComponent>
+            <div>Hello there!</div>
+        </comp>
+
+        <comp parentComponent phrase="This should say:">
+            <div class="parent container">
+                <p>$phrase</p>
+                <myComponent secondWord="world"></myComponent>
+                <div>
+                    <div>
+                        <myOtherComponent></myOtherComponent>
+                    </div>
+                </div>
+            </div>
+        </comp>
+
+
 
         <myComponent secondWord="world"></myComponent>
         <div id="container">
